@@ -1,7 +1,9 @@
 package com.felixtek.bmicalculator
 
 import android.annotation.SuppressLint
+import android.media.MediaPlayer
 import android.os.Bundle
+import android.provider.MediaStore.Audio.Media
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -10,6 +12,7 @@ import android.widget.Toast
 import android.widget.ToggleButton
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import kotlin.NumberFormatException
@@ -21,6 +24,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var etWeight : EditText
     lateinit var displayTv : TextView
     lateinit var unitSwitch : ToggleButton
+    lateinit var mediaPlayer : MediaPlayer
     var imperial = false
 
     @SuppressLint("MissingInflatedId")
@@ -42,6 +46,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         btnCalc.setOnClickListener(this)
 
     }
+
     override fun onClick(v: View?) {
         try {
             var height = etHeight.text.toString().toDouble()
@@ -64,6 +69,17 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     }
                     val formattedresult = String.format("%.2f",result)
                     displayTv.text = "$formattedresult"
+
+                    if (result > 40){
+                        if (!this::mediaPlayer.isInitialized){
+                            mediaPlayer = MediaPlayer.create(applicationContext, R.raw.obese3)
+                        }
+                        if (mediaPlayer.isPlaying){
+                            mediaPlayer.pause()
+                            mediaPlayer.seekTo(0)
+                        }
+                        mediaPlayer.start()
+                    }
                 }
 
             }

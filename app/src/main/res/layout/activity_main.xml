@@ -77,19 +77,6 @@
             android:text="Calculate!"
             android:textAlignment="center" />
 
-
     </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android" android:layout_gravity="bottom">
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Made by FelixTEK"
-            android:textSize="12sp"
-            android:layout_margin="20dp"
-            android:gravity="center" android:layout_alignParentBottom="true"/>
-    </RelativeLayout>
 </LinearLayout>
